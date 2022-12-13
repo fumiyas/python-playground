@@ -14,10 +14,10 @@ try:
                 continue
             print(line)
 except FileNotFoundError as e:
-    print('%s: %s' % (__file__, e), file=sys.stderr)
+    print('%s: WARNING: %s' % (__file__, e), file=sys.stderr)
 ## Python 2
 #except IOError as e:
 #    if e.errno == errno.ENOENT:
-#        print >>sys.stderr, '%s: %s' % (__file__, e)
+#        print >>sys.stderr, '%s: WARNING: %s' % (__file__, e)
 #    else:
 #        raise
