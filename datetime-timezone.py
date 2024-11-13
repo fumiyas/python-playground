@@ -17,6 +17,11 @@ print(f"{dt_as_local.isoformat()} {dt_as_local.tzinfo}")
 ## ローカル時間、タイムゾーン情報なし → UTC、タイムゾーン情報あり
 dt_as_utc = dt_wo_tz.astimezone(datetime.timezone.utc)
 print(f"{dt_as_utc.isoformat()} {dt_as_utc.tzinfo}")
+## → 2024-10-08T06:00:03.042399+00:00 UTC
+
+## ローカル時間、タイムゾーン情報なし → UTC、タイムゾーン情報あり (ゾーン変更)
+dt_replace_tz = dt_wo_tz.replace(tzinfo=datetime.timezone.utc)
+print(f"{dt_replace_tz.isoformat()} {dt_replace_tz.tzinfo}")
 ## → 2024-10-08T06:09:03.042399+00:00 UTC
 
 ## UTC、タイムゾーン情報あり → ローカル時間、タイムゾーン情報あり
