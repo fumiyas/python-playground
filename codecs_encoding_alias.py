@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-## -*- coding: utf-8 -*- vim:shiftwidth=4:expandtab:
-##
-## SPDX-FileCopyrightText: 2025 SATOH Fumiyasu @ OSSTech Corp., Japan
-## SPDX-License-Identifier: GPL-3.0-or-later
+# -*- coding: utf-8 -*- vim:shiftwidth=4:expandtab:
+#
+# SPDX-FileCopyrightText: 2025 SATOH Fumiyasu @ OSSTech Corp., Japan
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 import codecs
 import encodings
@@ -19,7 +19,7 @@ def encoding_alias(alias, encoding_name):
             None
 
     codecs.register(_encoding_search)
-    ## FIXME: 不要にできない?
+    # FIXME: 不要にできない?
     encodings._cache[alias_normalized] = encoding
 
 
