@@ -9,18 +9,27 @@ import encodings
 
 
 def encoding_alias(alias, encoding_name):
+    alias = alias.lower().translate(str.maketrans({"-": "_", " ": "_"}))
+
     encoding = codecs.lookup(encoding_name)
-    alias_normalized = alias.lower().translate(str.maketrans({"-": "_", " ": "_"}))
+    alias_encoding = codecs.CodecInfo(
+        name=alias,
+        encode=encoding.encode,
+        decode=encoding.decode,
+        streamreader=encoding.streamreader,
+        streamwriter=encoding.streamwriter,
+        incrementalencoder=encoding.incrementalencoder,
+        incrementaldecoder=encoding.incrementaldecoder,
+    )
 
     def _encoding_search(encoding_name):
-        if encoding_name == alias_normalized:
-            return encoding
+        if encoding_name == alias:
+            return alias_encoding
         else:
             None
 
     codecs.register(_encoding_search)
-    # FIXME: 不要にできない?
-    encodings._cache[alias_normalized] = encoding
+    encodings._cache[alias] = None  # Why needed?
 
 
 if __name__ == '__main__':
