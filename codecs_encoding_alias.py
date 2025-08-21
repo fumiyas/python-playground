@@ -9,8 +9,6 @@ import encodings
 
 
 def encoding_alias(alias, encoding_name):
-    alias = alias.lower().translate(str.maketrans({"-": "_", " ": "_"}))
-
     encoding = codecs.lookup(encoding_name)
     alias_encoding = codecs.CodecInfo(
         name=alias,
@@ -21,6 +19,9 @@ def encoding_alias(alias, encoding_name):
         incrementalencoder=encoding.incrementalencoder,
         incrementaldecoder=encoding.incrementaldecoder,
     )
+
+    alias = alias.lower().replace('-', '_')
+    #alias = encodings.normalize_encoding(alias)
 
     def _encoding_search(encoding_name):
         if encoding_name == alias:
