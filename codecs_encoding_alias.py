@@ -26,8 +26,7 @@ def encoding_alias(alias, encoding_name):
     def _encoding_search(encoding_name):
         if encoding_name == alias:
             return alias_encoding
-        else:
-            None
+        return None
 
     codecs.register(_encoding_search)
     encodings._cache[alias] = None  # Why needed?
