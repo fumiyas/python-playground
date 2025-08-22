@@ -8,6 +8,9 @@ import codecs
 import encodings
 
 
+_encoding_by_name = {}
+
+
 def encoding_alias(alias, encoding_name):
     encoding = codecs.lookup(encoding_name)
     alias_encoding = codecs.CodecInfo(
@@ -21,15 +24,16 @@ def encoding_alias(alias, encoding_name):
     )
 
     alias = alias.lower().replace('-', '_')
-    #alias = encodings.normalize_encoding(alias)
 
-    def _encoding_search(encoding_name):
-        if encoding_name == alias:
-            return alias_encoding
-        return None
+    _encoding_by_name[alias] = alias_encoding
+    encodings._cache[alias] = None
 
-    codecs.register(_encoding_search)
-    encodings._cache[alias] = None  # Why needed?
+
+def encoding_search(encoding_name):
+    return _encoding_by_name.get(encoding_name)
+
+
+codecs.register(encoding_search)
 
 
 if __name__ == '__main__':
