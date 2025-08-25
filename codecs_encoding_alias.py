@@ -23,7 +23,8 @@ def encoding_alias(alias, encoding_name):
         incrementaldecoder=encoding.incrementaldecoder,
     )
 
-    alias = alias.lower().replace('-', '_')
+    alias = alias.lower().replace('-', '_')  # lazy, but fast
+    #encodings.normalize_encoding(alias)  # strict, but slow
 
     _encoding_by_name[alias] = alias_encoding
     encodings._cache[alias] = None
