@@ -24,7 +24,7 @@ def encoding_alias(alias, encoding_name):
     )
 
     alias = alias.lower().replace('-', '_')  # lazy, but fast
-    #encodings.normalize_encoding(alias)  # strict, but slow
+    #alias = encodings.normalize_encoding(alias)  # strict, but slow
 
     _encoding_by_name[alias] = alias_encoding
     encodings._cache[alias] = None
@@ -40,6 +40,7 @@ codecs.register(encoding_search)
 if __name__ == '__main__':
     import base64
 
+    encoding_alias('shift_jis', 'cp932')
     encoding_alias('gb2312', 'gb18030')
     encoding_alias('windows-874', 'cp874')
     encoding_alias('cseuckr', 'euc-kr')
